@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "./node_modules/.bin/gulp run:dev",
+    "mongo": "./node_modules/.bin/gulp mongo",
+    "lint": "eslint ./src "
   },
   "dependencies": {
     "body-parser": "^1.19.0",

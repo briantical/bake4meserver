@@ -2,18 +2,16 @@
 var express = require('express');
 var favicon = require('serve-favicon');
 var path = require('path');
+const bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 require('dotenv').config();
 
-const api = require('./src/routes/index');
+const { config } = require('./config');
+const api = require('./src/api/index');
 const { mongoManager } = require('./src/mongo');
 const { passport } = require('./src/passport');
-const { onAppStart } = require('./on-start');
-
-var indexRouter = require('./src/routes/index');
-var usersRouter = require('./src/routes/users');
 
 var app = express();
 mongoManager.connect();
@@ -34,9 +32,6 @@ app.use(bodyParser.json({
 app.use(passport.init());
 
 // api routes v1
-app.use('/api/criteria', api(config));
-
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/v1', api(config));
 
 module.exports = app;

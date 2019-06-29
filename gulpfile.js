@@ -3,10 +3,12 @@ const gulp = require('gulp');
 const nodemon = require('gulp-nodemon');
 const gutil = require('gulp-util');
 const path = require('path');
-const fs = require('fs');
 const { config } = require('./config');
+const port = process.env.PORT || 3000;
 
 const consoleLog = data => gutil.log(data.toString().trim());
+
+const toWatch = ['./src'];
 
 gulp.task('server', () => nodemon({
   script: './bin/www',
@@ -21,12 +23,14 @@ gulp.task('server', () => nodemon({
 }));
 
 gulp.task('mongo', (callback) => {
-  const dbProcess = spawn('mongod');
-  dbProcess.stderr.on('data', consoleLog);
-  dbProcess.on('close', (code) => {
+  const dbProcess = spawn('mongod');  
+  dbProcess.stderr.on('data', consoleLog);  
+  dbProcess.on('close', (code) => {  	
     consoleLog(`Database was stopped with code ${code}`);
     callback();
   });
 });
 
-gulp.task('run:dev', ['mongo', 'server']);
+gulp.task('run:dev', gulp.parallel(['mongo', 'server']), function(){
+	browser.init({server: './_site', port: port});  
+});

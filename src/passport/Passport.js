@@ -1,7 +1,7 @@
 const passportNPM = require('passport');
 const { Strategy: LocalStrategy } = require('passport-local');
 const { User } = require('../models/user');
-const { PassportStrategies } = require('./PasportStrategies');
+const { PassportStrategies } = require('./PassportStrategies');
 const config = require('../../config');
 
 /**
