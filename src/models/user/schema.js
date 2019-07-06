@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { EMAIL } = require('../../utils/regexes');
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
 
@@ -20,6 +21,16 @@ const schema = new Schema({
 		},
 		avatar: {
 			type: String,
+		},
+		phoneNumber:{
+			type: String,
+		},
+		userName:{
+			type: String,
+		},
+		address:{
+			type: ObjectId,
+			ref: 'Address',    		
 		}
 	},
 });

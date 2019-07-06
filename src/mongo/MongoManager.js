@@ -7,12 +7,17 @@ class MongoManager {
   constructor () {
   }
 
-  getMongoUrl() {
+  getMongoUrl() {  	
     return process.env.MONGODB_URI;
   }
   
   connect () {
-    return mongoose.connect(this.getMongoUrl(), { useNewUrlParser: true });
+    return mongoose.connect(this.getMongoUrl(), { 
+    	useNewUrlParser: true ,
+    	keepAlive: true, 
+    	keepAliveInitialDelay: 300000 ,
+    	replicaSet : "rsCriteria"
+    });
   }
 }
 

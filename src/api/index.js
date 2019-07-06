@@ -2,11 +2,12 @@ const express = require('express');
 
 const { errorHandler } = require('../middleware/index');
 
-const { User } = require('../models/user');
+const { Addons,Address,Cake,Cart,Delivery,Flavour,Order,OrderDetails,Payment,User } = require('../models/');
 
 const auth = require('../controllers/auth');
 const users = require('../controllers/users');
-const models = { User};
+
+const models = { Addons,Address,Cake,Cart,Delivery,Flavour,Order,OrderDetails,Payment,User };
 
 const routersInit = config => {	
 	//var router = express.Router();
