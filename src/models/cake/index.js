@@ -1,7 +1,3 @@
-const { Cake } = require('./model');
-
-module.exports = { Cake };
-
 const socket_io = require('socket.io');
 let io = socket_io();
 const { CakeModel } = require('./model');
