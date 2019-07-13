@@ -6,7 +6,6 @@ const create = require('./create');
 const remove = require('./remove');
 const retrieve = require('./retrieve');
 const all = require('./all');
-const { list } = require('./list');
 
 module.exports = (models, { config }) => {
   const api = router();

@@ -29,8 +29,6 @@ const changePassword = require('./change-password');
  @params
        newPassword {string}
        password {string}
-
-
  **/
 
 module.exports = (models, { config }) => {
