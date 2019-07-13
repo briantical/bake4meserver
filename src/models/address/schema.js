@@ -11,10 +11,10 @@ const schema = new Schema({
     type: String,
     required: [true],
   },
-  district: [{
+  district: {
     type: String,
     required: [true],    
-  }],
+  },
   street: {
     type: String,
     required: [true],

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
 const { schema } = require('./schema');
 
-const OrderModel = mongoose.model('OrderModel', schema);
-module.exports = { OrderModel };
+const Order = mongoose.model('Order', schema);
+module.exports = { Order };

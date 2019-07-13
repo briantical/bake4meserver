@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
 const { schema } = require('./schema');
 
-const DeliveryModel = mongoose.model('DeliveryModel', schema);
-module.exports = { DeliveryModel };
+const Delivery = mongoose.model('Delivery', schema);
+module.exports = { Delivery };

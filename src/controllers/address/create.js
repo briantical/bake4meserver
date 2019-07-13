@@ -1,14 +1,20 @@
-const { sendOne } = require('../../middleware/index');
+const _ = require('lodash');
+const { sendCreated } = require('../../middleware/index');
 
-const retrieve = ({ Address }) => async (req, res, next) => {
-  try {
-    const addressID = req.user.id;
-    const { _id } = req.params;
-    const address = await Address.findOne({ _id, addressID });
-    return sendOne(res, { address });
+const create = ({ Address }) => async (req, res, next) => {
+  try {    
+
+  	const {country, region, district, street, location, coordinates} = req.body
+    const address = new Address();
+    _.extend(address, req.body);
+
+    await address.save();
+    return sendCreated(res, { address });
+
   } catch (error) {
+
     next(error);
   }
 };
 
-module.exports = retrieve;
+module.exports = create;
