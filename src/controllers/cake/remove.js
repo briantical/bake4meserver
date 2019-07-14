@@ -1,11 +1,10 @@
 const { sendDeleted } = require('../../middleware/index');
 
 const remove = ({ Cake }) => async (req, res, next) => {
-  try {
-    const cakeID = req.user.id;
+  try {    
     const { _id } = req.params;
-    const cake = await Cake.findOne({ _id, cakeID });
-    await Cake.remove({ _id, cakeID });
+    const cake = await Cake.findOne({ _id });
+    await Cake.remove({ _id });
     return sendDeleted(res, { cake });
   } catch (error) {
     next(error);

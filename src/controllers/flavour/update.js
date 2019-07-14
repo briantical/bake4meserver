@@ -2,10 +2,9 @@ const _ = require('lodash');
 const { sendUpdated } = require('../../middleware/index');
 
 const update = ({ Flavour }) => async (req, res, next) => {
-  try {
-    const flavourID = req.user.id;
+  try {    
     const { _id } = req.params;
-    const flavour = await Flavour.findOne({ _id, flavourID });
+    const flavour = await Flavour.findOne({ _id });
     _.extend(flavour, req.body);
 
     await flavour.save();

@@ -1,10 +1,9 @@
 const { sendOne } = require('../../middleware/index');
 
 const retrieve = ({ Cart }) => async (req, res, next) => {
-  try {
-    const cartID = req.user.id;
+  try {    
     const { _id } = req.params;
-    const cart = await Cart.findOne({ _id, cartID });
+    const cart = await Cart.findOne({ _id });
     return sendOne(res, { cart });
   } catch (error) {
     next(error);

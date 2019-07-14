@@ -2,10 +2,9 @@ const _ = require('lodash');
 const { sendUpdated } = require('../../middleware/index');
 
 const update = ({ Address }) => async (req, res, next) => {
-  try {
-    const addressID = req.user.id;
+  try {    
     const { _id } = req.params;
-    const address = await Address.findOne({ _id, addressID });
+    const address = await Address.findOne({ _id });
     _.extend(address, req.body);
 
     await address.save();

@@ -1,10 +1,9 @@
 const { sendOne } = require('../../middleware/index');
 
 const retrieve = ({ Order }) => async (req, res, next) => {
-  try {
-    const orderID = req.user.id;
+  try {    
     const { _id } = req.params;
-    const order = await Order.findOne({ _id, orderID });
+    const order = await Order.findOne({ _id });
     return sendOne(res, { order });
   } catch (error) {
     next(error);

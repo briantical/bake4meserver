@@ -1,10 +1,9 @@
 const { sendOne } = require('../../middleware/index');
 
-const retrieve = ({ Addon }) => async (req, res, next) => {
+const retrieve = ({ Delivery }) => async (req, res, next) => {
   try {
-    const deliveryID = req.user.id;
     const { _id } = req.params;
-    const delivery = await Addon.findOne({ _id, deliveryID });
+    const delivery = await Delivery.findOne({ _id });
     return sendOne(res, { delivery });
   } catch (error) {
     next(error);

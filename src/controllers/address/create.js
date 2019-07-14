@@ -2,9 +2,7 @@ const _ = require('lodash');
 const { sendCreated } = require('../../middleware/index');
 
 const create = ({ Address }) => async (req, res, next) => {
-  try {    
-
-  	const {country, region, district, street, location, coordinates} = req.body
+  try {      	
     const address = new Address();
     _.extend(address, req.body);
 

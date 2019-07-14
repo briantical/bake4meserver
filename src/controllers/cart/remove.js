@@ -1,11 +1,10 @@
 const { sendDeleted } = require('../../middleware/index');
 
 const remove = ({ Cart }) => async (req, res, next) => {
-  try {
-    const cartID = req.user.id;
+  try {    
     const { _id } = req.params;
-    const cart = await Cart.findOne({ _id, cartID });
-    await Cart.remove({ _id, cartID });
+    const cart = await Cart.findOne({ _id });
+    await Cart.remove({ _id });
     return sendDeleted(res, { cart });
   } catch (error) {
     next(error);

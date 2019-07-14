@@ -1,11 +1,10 @@
 const { sendDeleted } = require('../../middleware/index');
 
 const remove = ({ Addon }) => async (req, res, next) => {
-  try {
-    const addonID = req.user.id;
+  try {    
     const { _id } = req.params;
-    const addon = await Addon.findOne({ _id, addonID });
-    await Addon.remove({ _id, addonID });
+    const addon = await Addon.findOne({ _id });
+    await Addon.remove({ _id });
     return sendDeleted(res, { addon });
   } catch (error) {
     next(error);

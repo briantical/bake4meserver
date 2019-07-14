@@ -1,14 +1,15 @@
 const { sendOne } = require('../../middleware/index');
 
-const retrieve = ({ Address }) => async (req, res, next) => {
-  try {
-    const paymentID = req.user.id;
-    const { _id } = req.params;
-    const payment = await Address.findOne({ _id, paymentID });
+const create = ({ Paymnet }) => async (req, res, next) => {
+  try {    
+    const payment = new Paymnet();
+    _.extend(payment, req.body);
+    await payment.save();
+
     return sendOne(res, { payment });
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = retrieve;
+module.exports = create;

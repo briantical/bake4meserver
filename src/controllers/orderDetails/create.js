@@ -1,14 +1,15 @@
 const { sendOne } = require('../../middleware/index');
 
-const retrieve = ({ OrderDetails }) => async (req, res, next) => {
+const create = ({ OrderDetails }) => async (req, res, next) => {
   try {
-    const orderDetailsID = req.user.id;
-    const { _id } = req.params;
-    const orderDetails = await OrderDetails.findOne({ _id, orderDetailsID });
+    const orderDetails = new OrderDetails();
+    _.extend(orderDetails, req.body);
+    await orderDetails.save();
+
     return sendOne(res, { orderDetails });
   } catch (error) {
     next(error);
   }
 };
 
-module.exports = retrieve;
+module.exports = create;
