@@ -7,10 +7,6 @@ const schema = new Schema({
     type : String,
     default: "Pickup",
     required: [true]
-  },
-  toBeDelivered: {
-    type: Boolean,    
-    required: [true],
   },   
   deliveryDetails:{
     isDelivered: {
@@ -28,12 +24,12 @@ const schema = new Schema({
       default: "Owner",
       required: [true]
     },
-    address:{
+    destination:{
       type: ObjectId,
       ref: 'Address',
       required: [true],
     },
-    deliveryCost:{
+    fee:{
       type: Number,
       default: 0,
       required: [true]

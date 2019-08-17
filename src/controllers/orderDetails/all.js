@@ -9,29 +9,20 @@ const all = ({ OrderDetails }, { config }) => async (req, res, next) => {
 		limit = parseInt(limit, 10);
 		limit = limit && limit < config.maxLimitPerQuery ? limit : config.maxLimitPerQuery;
 
-		const query = { $and : [] };
+		/*const query = { $and : [] };
 		if (search) {
 			query.$and.push({ $or: new OrderDetails().fieldsToSearch(search) });
-		}
-    // if need work with cords
-		if (lat && lng) {
-			query.$and.push({
-				location: {
-					$near: {
-						$geometry: { type: 'Point', coordinates: [parseFloat(lat), parseFloat(lng)] },
-						$maxDistance: parseFloat(distance) || 10
-					}
-				}
-			});
-		}
+		}*/
 
-		const count = await OrderDetails.find(query).count();
-		const businesses = await OrderDetails.find(query)
-		//.sort({ : 1 })
+		const count = await OrderDetails.find().countDocuments();
+		const Orderdetails = await OrderDetails.find()
+			.populate('order')
+			.populate('cart')
+			.populate('product')
 			.skip(skip)
 			.limit(limit);
 
-		return sendList(res, { businesses, count });
+		return sendList(res, { Orderdetails, count });
 	} catch (error) {
 		next(error);
 	}

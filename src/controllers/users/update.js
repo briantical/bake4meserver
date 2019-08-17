@@ -4,7 +4,9 @@ const { MethodNotAllowed } = require('rest-api-errors');
 
 const signIn = ({ User }) => async (req, res, next) => {
   try {
-    const user = await User.findById(req.user.id);
+    const user = await User
+      .findById(req.user.id)
+      .populate('address');
     const { email } = req.body;
     if (!user) {
       throw new MethodNotAllowed(405, 'Permission denied');

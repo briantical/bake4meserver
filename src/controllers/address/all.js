@@ -3,7 +3,7 @@ const { queryToObject } = require('../../utils/requests');
 
 const all = ({ Address }, { config }) => async (req, res, next) => {
 	try {
-		let { search, limit, skip, lat, lng, distance } = queryToObject(req.query);
+		let { search, limit, skip } = queryToObject(req.query);
 
 		skip = skip ? parseInt(skip, 10) : 0;
 		limit = parseInt(limit, 10);
@@ -13,25 +13,13 @@ const all = ({ Address }, { config }) => async (req, res, next) => {
 		if (search) {
 			query.$and.push({ $or: new Address().fieldsToSearch(search) });
 		}
-    // if need work with cords
-		if (lat && lng) {
-			query.$and.push({
-				location: {
-					$near: {
-						$geometry: { type: 'Point', coordinates: [parseFloat(lat), parseFloat(lng)] },
-						$maxDistance: parseFloat(distance) || 10
-					}
-				}
-			});
-		}
 
-		const count = await Address.find(query).count();
-		const businesses = await Address.find(query)
-		//.sort({ : 1 })
+		const count = await Address.find(query).countDocuments();
+		const addresses = await Address.find(query)
 			.skip(skip)
 			.limit(limit);
 
-		return sendList(res, { businesses, count });
+		return sendList(res, { addresses, count });
 	} catch (error) {
 		next(error);
 	}

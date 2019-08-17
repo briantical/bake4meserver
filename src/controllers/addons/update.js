@@ -4,7 +4,9 @@ const { sendUpdated } = require('../../middleware/index');
 const update = ({ Addon }) => async (req, res, next) => {
   try {    
     const { _id } = req.params;
-    const addon = await Addon.findOne({ _id });
+    const addon = await Addon
+      .findOne({ _id })
+      .populate('product');
     _.extend(addon, req.body);
 
     await addon.save();

@@ -21,6 +21,7 @@ class PassportStrategies {
   local(username, password, done) {
     const error = new Unauthorized(401, 'Incorrect username or password.');
     this._User.findOne({ email: username })
+      .populate('profile.address')
       .then(user => user
         ? user.authenticate(password, (err, userData) =>
           userData

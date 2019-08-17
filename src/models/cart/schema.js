@@ -3,22 +3,21 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
-  cart: {
-    type: String,    
-    required: [true],
-  },
   description:{
     type : String,    
     required: [true]
   },
-  items:[{
-  	order:{
-      type: ObjectId,
-      ref: 'Order',
-      required: [true],
-    }
-  }],
-  cost:{
+  shipping:{
+    type: ObjectId,
+    ref: 'Shipping',
+    required: [true],
+  },
+  payment:{
+    type : ObjectId,
+    ref : 'Payment',
+    required : [true]
+  },
+  totalCost:{
     type: Number,
     required: [true]
   },

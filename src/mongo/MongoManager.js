@@ -16,7 +16,7 @@ class MongoManager {
     	useNewUrlParser: true ,
     	keepAlive: true, 
     	keepAliveInitialDelay: 300000 ,
-    	replicaSet : "rsCriteria"
+    	//replicaSet : "rscriteria"
     });
   }
 }

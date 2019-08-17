@@ -32,8 +32,10 @@ function runCommand(command) {
   }
 }
 
-gulp.task('mongo', runCommand('mongod --port 27017 --replSet rsCriteria'));
+//gulp.task('mongo', runCommand('mongod --port 27017 --replSet rscriteria'));
+gulp.task('mongo', runCommand('mongod --port 27017'));
+
 
 gulp.task('run:dev', gulp.parallel(['mongo', 'server']), function(){
-	browser.init({server: './_site', port: port});  
+	browser.init({server: './_site', port: port});
 });

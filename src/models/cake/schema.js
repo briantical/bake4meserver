@@ -1,26 +1,24 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
-  cake: {
-    type: String,    
-    required: [true],
-  },
-  cakeType:{
-    type: String,
-    default: "Birthday",
+  category:{
+    type: ObjectId,
+    ref: "Category",
     required: [true]
+  },
+  name:{
+    type : String,
+    required: [true],
+    unique : true,    
   },
   description:{
     type : String,    
     required: [true]
   },
-  cost:{
-  	type : Number,  	
-  	required: [true]
-  },
-  cakeDetails:[{
-    unitWeight:{
+  cakeDetails:{
+    weight:{
       type: Number,
       required: [true]
     },
@@ -33,8 +31,16 @@ const schema = new Schema({
       type: Number,
       default: 1,
       required: [true]
-    }
-  }]
+    },
+    flavour:{
+      type: String,
+      required: [true]
+    },
+    cost:{
+      type : Number,  	
+      required: [true]
+    },
+  }
 });
 
 module.exports = { schema };

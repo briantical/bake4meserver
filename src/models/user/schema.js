@@ -30,7 +30,8 @@ const schema = new Schema({
 		},
 		address:{
 			type: ObjectId,
-			ref: 'Address',    		
+			ref: 'Address',
+			required: [true]  		
 		}
 	},
 });

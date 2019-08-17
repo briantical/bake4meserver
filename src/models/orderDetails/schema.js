@@ -3,19 +3,24 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({  
-  orderDetails:{
+  order:{
     type: ObjectId,
     ref: 'Order',
     required: [true],
   },
-  cost: {
-    type: Number,    
+  product: {
+    type: ObjectId,
+    ref: 'Product',  
     required: [true],
   },
-  delivery: {
-    type: ObjectId,
-    ref: 'Delivery',
+  quantity: {
+    type: Number,
     required: [true],
+  },
+  cart:{
+    type: ObjectId,
+    ref: 'Cart',
+    required : [true]
   }
 });
 

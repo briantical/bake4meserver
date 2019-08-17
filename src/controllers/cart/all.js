@@ -3,7 +3,7 @@ const { queryToObject } = require('../../utils/requests');
 
 const all = ({ Cart }, { config }) => async (req, res, next) => {
 	try {
-		let { search, limit, skip, lat, lng, distance } = queryToObject(req.query);
+		let { search, limit, skip } = queryToObject(req.query);
 
 		skip = skip ? parseInt(skip, 10) : 0;
 		limit = parseInt(limit, 10);
@@ -13,25 +13,15 @@ const all = ({ Cart }, { config }) => async (req, res, next) => {
 		if (search) {
 			query.$and.push({ $or: new Cart().fieldsToSearch(search) });
 		}
-    // if need work with cords
-		if (lat && lng) {
-			query.$and.push({
-				location: {
-					$near: {
-						$geometry: { type: 'Point', coordinates: [parseFloat(lat), parseFloat(lng)] },
-						$maxDistance: parseFloat(distance) || 10
-					}
-				}
-			});
-		}
-
-		const count = await Cart.find(query).count();
-		const businesses = await Cart.find(query)
-		//.sort({ : 1 })
+    
+		const count = await Cart.find(query).countDocuments();
+		const carts = await Cart.find(query)
+			.populate('shipping')
+			.populate('payment')
 			.skip(skip)
 			.limit(limit);
 
-		return sendList(res, { businesses, count });
+		return sendList(res, { carts, count });
 	} catch (error) {
 		next(error);
 	}

@@ -3,26 +3,19 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({  
-  order:{
-    type : String,    
-    required: [true]
-  },
   description: {
     type: String,    
     required: [true],
   },
-  items: [{
-    cake:{
-      type: ObjectId,
-      ref: 'Cake',
-      required: [true],
-    },
-    addons:{
-      type: ObjectId,
-      ref: 'Addons',
-      required: [true],
-    }
-  }]
+  customer:{
+    type: ObjectId,
+    ref: 'Customer',
+    required: [true],
+  },
+  orderDate:{
+    type: Date,
+    required: [true],
+  }
 });
 
 module.exports = { schema };

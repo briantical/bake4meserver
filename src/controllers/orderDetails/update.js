@@ -4,7 +4,11 @@ const { sendUpdated } = require('../../middleware/index');
 const update = ({ OrderDetails }) => async (req, res, next) => {
   try {    
     const { _id } = req.params;
-    const orderDetails = await OrderDetails.findOne({ _id });
+    const orderDetails = await OrderDetails
+      .findOne({ _id })
+      .populate('order')
+			.populate('cart')
+			.populate('product');
     _.extend(orderDetails, req.body);
 
     await orderDetails.save();
