@@ -17,7 +17,7 @@ const schema = new Schema({
 	profile: {
 		fullName: {
 			type: String,
-			required: [true],
+			required: [false],
 		},
 		avatar: {
 			type: String,
@@ -31,7 +31,7 @@ const schema = new Schema({
 		address:{
 			type: ObjectId,
 			ref: 'Address',
-			required: [true]  		
+			required: [false]  		
 		}
 	},
 });

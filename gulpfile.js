@@ -1,16 +1,12 @@
 const { spawn, exec } = require('child_process');
 const gulp = require('gulp');
 const nodemon = require('gulp-nodemon');
-const gutil = require('gulp-util');
 const path = require('path');
-const { config } = require('./config');
 const port = process.env.PORT || 3000;
-
-const consoleLog = data => gutil.log(data.toString().trim());
 
 const toWatch = ['./src'];
 
-gulp.task('server', () => nodemon({
+gulp.task('server', async() =>  nodemon({
   script: './bin/www',
   watch: toWatch,
 	ext: 'js yaml',
@@ -23,8 +19,8 @@ gulp.task('server', () => nodemon({
 }));
 
 function runCommand(command) {
-  return function (cb) {
-    exec(command, function (err, stdout, stderr) {
+  return async function (cb) {
+    await exec(command, function (err, stdout, stderr) {
       console.log(stdout);
       console.log(stderr);
       cb(err);
@@ -32,10 +28,8 @@ function runCommand(command) {
   }
 }
 
-//gulp.task('mongo', runCommand('mongod --port 27017 --replSet rscriteria'));
-gulp.task('mongo', runCommand('mongod --port 27017'));
+gulp.task('mongo', runCommand('mongod --port 27017 --replSet rscriteria --bind_ip 127.0.0.1'));
 
-
-gulp.task('run:dev', gulp.parallel(['mongo', 'server']), function(){
-	browser.init({server: './_site', port: port});
+gulp.task('run:dev', gulp.series(['mongo', 'server']), function(){
+  browser.init({server: './_site', port: port});
 });

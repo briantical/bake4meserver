@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.set('useNewUrlParser', true);
+
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
@@ -15,9 +15,15 @@ class MongoManager {
     return mongoose.connect(this.getMongoUrl(), { 
     	useNewUrlParser: true ,
     	keepAlive: true, 
-    	keepAliveInitialDelay: 300000 ,
-    	//replicaSet : "rscriteria"
-    });
+      keepAliveInitialDelay: 300000 ,
+    })
+      .then(() => console.log('Connection to database established.'))
+      .catch(err => {
+        setTimeout(() => {
+          console.log('Attempting to connect ...');
+          this.connect();
+        }, 2000);
+      });
   }
 }
 

@@ -6,13 +6,19 @@ const signIn = ({ User }) => async (req, res, next) => {
   try {
     const user = await User
       .findById(req.user.id)
-      .populate('address');
-    const { email } = req.body;
+      .populate('profile.address');
+    const { fullName, avatar, phoneNumber,userName, address } = req.body;
     if (!user) {
       throw new MethodNotAllowed(405, 'Permission denied');
     }
     _.extend(user, {
-      email: email,
+      profile: {
+        fullName: fullName,
+        avatar: avatar,
+        phoneNumber: phoneNumber,
+        userName: userName,
+        address: address     
+      },
     });
 
     await user.save();

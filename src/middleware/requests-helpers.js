@@ -13,7 +13,6 @@ const STATUSES = {
   BAD_GATEWAY: 502,
 };
 
-
 const sendResponse = (res, data, status = STATUSES.SUCCESS) => res.status(status).json(data).end();
 
 const withoutErrors = (next, callback) => (err, updatedTank) => {

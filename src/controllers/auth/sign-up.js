@@ -10,14 +10,7 @@ const signUp = ({ User }) => (req, res, next) => {
   }
 
   const user = new User({
-    email: email,
-    profile: {
-      fullName: fullName,
-      avatar: avatar,
-      phoneNumber: phoneNumber,
-      userName: userName,
-      address: address     
-    },
+    email: email
   });
 
   User.register(user, password,

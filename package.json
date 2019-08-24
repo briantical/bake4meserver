@@ -6,6 +6,7 @@
     "start": "node ./bin/www",
     "dev": "./node_modules/.bin/gulp run:dev",
     "mongo": "./node_modules/.bin/gulp mongo",
+    "server": "./node_modules/.bin/gulp server",
     "lint": "eslint ./src "
   },
   "dependencies": {
