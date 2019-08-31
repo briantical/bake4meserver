@@ -2,9 +2,9 @@ const express = require('express');
 
 const { errorHandler } = require('../middleware/index');
 
-const models = { Addons,Address,Category,Cake,Cart,Shipping,Order,OrderDetails,Payment,User, Customer } = require('../models/');
+const models = { Addons,Address,Category,Cake,Image ,Cart,Shipping,Order,OrderDetails,Payment,User, Customer } = require('../models/');
 
-const { authController, usersController, addonsController, categoryController,addressController, cakeController, cartController, customerController,shippingController, orderController, orderDetailsController, paymentController,
+const { authController, usersController, addonsController, imageController ,categoryController,addressController, cakeController, cartController, customerController,shippingController, orderController, orderDetailsController, paymentController,
 } = require('../controllers/')
 
 const routersInit = config => {		
@@ -22,7 +22,8 @@ const routersInit = config => {
 	router.use('/order', orderController(models, { config }));
 	router.use('/orderdetails', orderDetailsController(models, { config }));
 	router.use('/payment', paymentController(models, { config }));
-	
+	router.use('/image', imageController(models, { config }));
+
 	router.use(errorHandler);
 	return router;
 };

@@ -12,12 +12,15 @@ class MongoManager {
   }
   
   connect () {
-    return mongoose.connect(this.getMongoUrl(), { 
+    mongoose.connect(this.getMongoUrl(), { 
     	useNewUrlParser: true ,
     	keepAlive: true, 
       keepAliveInitialDelay: 300000 ,
     })
-      .then(() => console.log('Connection to database established.'))
+      .then(() => {
+        console.log('Connection to database established.');
+        return mongoose.connection.db
+      })
       .catch(err => {
         setTimeout(() => {
           console.log('Attempting to connect ...');
