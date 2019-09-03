@@ -1,5 +1,4 @@
 const _ = require('lodash');
-const path = require('path');
 const mongoose = require('mongoose');
 const fs = require('fs');
 
@@ -13,12 +12,9 @@ const create = ({ Image }) => async (req, res, next) => {
         chunkSizeBytes: 1024,
         bucketName: 'criteriafiles'
     });
-
-    console.log(req)
-    //let filesrc = req.file.path;
-    let filename = 'collage.png';
-    let filesrc = path.join(__dirname,'../../storage/' + filename)
-    //let filename = req.file.filename;
+    
+    let filesrc = req.file.path;
+    let filename = req.file.filename;
 
     fs.createReadStream(filesrc)
     .pipe(gridfs.openUploadStream(filename))
@@ -31,10 +27,16 @@ const create = ({ Image }) => async (req, res, next) => {
         
         const image = new Image();
         _.extend(image, req.body);
+        _.extend(image, {'name': filename});
         _.extend(image, {'file_id': file_id});
         
         await image.save();
         sendCreated(res, { image });
+
+        //Delete the image from the file system after storage in MongoDB
+        fs.unlink(filesrc, (err) =>{
+          err ? console.log('File deletion failed') : console.log('File deletion successful');
+        })
     });
     }).catch((err) => console.log(""));
 

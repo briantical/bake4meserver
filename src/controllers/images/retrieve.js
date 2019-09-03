@@ -27,7 +27,7 @@ const retrieve = ({ Image }) => async (req, res, next) => {
         on('finish', function() {
           console.log('File downloaded successfully!');
         });
-    console.log('File path: ' + JSON.stringify(data.path));
+    // console.log('File path: ' + JSON.stringify(data.path));
     // res.type('png');
     // return res.sendFile(data.path);
     return sendOne(res, { image });
