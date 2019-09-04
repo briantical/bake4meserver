@@ -11,9 +11,8 @@ const schema = new Schema({
     type : String,    
     required: [true]
   },
-  file_id:{
-    type : ObjectId,
-    ref: 'criteriafiles.files', 	
+  image_url:{
+    type : String, 	
   	required: [true]
   },
 });
