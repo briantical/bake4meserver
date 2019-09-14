@@ -7,22 +7,22 @@ const models = { Addons,Address,Category,Cake,Image ,Cart,Shipping,Order,OrderDe
 const { authController, usersController, addonsController, imageController ,categoryController,addressController, cakeController, cartController, customerController,shippingController, orderController, orderDetailsController, paymentController,
 } = require('../controllers/')
 
-const routersInit = config => {		
+const routersInit = (config, pusher) => {		
 	const router = express();
 
-	router.use('/auth', authController(models, { config }));
-	router.use('/user', usersController(models, { config }));
-	router.use('/addons', addonsController(models, { config }));
-	router.use('/address', addressController(models, { config }));
-	router.use('/cake', cakeController(models, { config }));
-	router.use('/cart', cartController(models, { config }));
-	router.use('/customer', customerController(models, { config }));
-	router.use('/category', categoryController(models, { config }));
-	router.use('/shipping', shippingController(models, { config }));
-	router.use('/order', orderController(models, { config }));
-	router.use('/orderdetails', orderDetailsController(models, { config }));
-	router.use('/payment', paymentController(models, { config }));
-	router.use('/image', imageController(models, { config }));
+	router.use('/auth', authController(models, { config ,pusher }));
+	router.use('/user', usersController(models, { config ,pusher }));
+	router.use('/addons', addonsController(models, { config ,pusher }));
+	router.use('/address', addressController(models, { config ,pusher }));
+	router.use('/cake', cakeController(models, { config ,pusher }));
+	router.use('/cart', cartController(models, { config ,pusher }));
+	router.use('/customer', customerController(models, { config ,pusher }));
+	router.use('/category', categoryController(models, { config ,pusher }));
+	router.use('/shipping', shippingController(models, { config ,pusher }));
+	router.use('/order', orderController(models, { config ,pusher }));
+	router.use('/orderdetails', orderDetailsController(models, { config ,pusher }));
+	router.use('/payment', paymentController(models, { config ,pusher }));
+	router.use('/image', imageController(models, { config ,pusher }));
 
 	router.use(errorHandler);
 	return router;

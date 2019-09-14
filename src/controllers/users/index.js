@@ -16,6 +16,45 @@ const update = require('./update');
 module.exports = (models) => {
   const api = router();
 
+  const { User } = models;
+  const changeStream = User.watch({ fullDocument: 'updateLookup' });
+
+  changeStream.on('change', (change) =>{
+    const channel = 'users';
+    const user = change.fullDocument;
+
+    switch (change.operationType) {
+      //Return full document inserted
+      case 'insert':
+        pusher.trigger(
+          channel,
+          'inserted', 
+          { user }
+        ); 
+        break;
+      //Return deleted document ID
+      case 'delete':
+        pusher.trigger(
+          channel,
+          'deleted', 
+          change.documentKey._id
+        );
+        break;
+      //Return full document inserted and updated fields
+      case 'update':
+        const user_fields = change.updateDescription.updatedFields;
+        pusher.trigger(
+          channel,
+          'updated', 
+          { user_fields , user }
+        );
+        break;
+
+      default:
+        break;
+    }
+  });
+
   api.put('/update', authenticate, update(models));
 
   return api;

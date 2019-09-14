@@ -1,7 +1,6 @@
 const { Router: router } = require('express');
 const  multer = require('multer');
 const { authenticate } = require('../../middleware');
-const  firebase = require('firebase-admin');
 
 const update = require('./update');
 const create = require('./create');
@@ -26,6 +25,45 @@ var upload = multer({storage: storage,
 
 module.exports = (models, { config }) => {
   const api = router();
+
+  const { Image } = models;
+  const changeStream = Image.watch({ fullDocument: 'updateLookup' });
+
+  changeStream.on('change', (change) =>{
+    const channel = 'images';
+    const image = change.fullDocument;
+
+    switch (change.operationType) {
+      //Return full document inserted
+      case 'insert':
+        pusher.trigger(
+          channel,
+          'inserted', 
+          { image }
+        ); 
+        break;
+      //Return deleted document ID
+      case 'delete':
+        pusher.trigger(
+          channel,
+          'deleted', 
+          change.documentKey._id
+        );
+        break;
+      //Return full document inserted and updated fields
+      case 'update':
+        const image_fields = change.updateDescription.updatedFields;
+        pusher.trigger(
+          channel,
+          'updated', 
+          { image_fields , image }
+        );
+        break;
+
+      default:
+        break;
+    }
+  });
 
   api.get('/', authenticate, all(models, { config }));
   api.get('/:_id', authenticate, retrieve(models));

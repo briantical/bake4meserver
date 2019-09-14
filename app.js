@@ -30,8 +30,21 @@ const bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+//Call env variables after defining dontenv
 require('dotenv').config();
 
+// pusher to publish the database changes in realtime.
+const Pusher = require('pusher');
+
+//Configure the Pusher object entering your app information
+const pusher = new Pusher({
+	appId      : process.env.PUSHER_APP_ID,
+	key        : process.env.PUSHER_KEY,
+	secret     : process.env.PUSHER_SECRET,
+	cluster    : process.env.PUSHER_CLUSTER,
+	useTLS  : true
+});
+  
 const { config } = require('./config');
 const api = require('./src/api/index');
 const { mongoManager } = require('./src/mongo');
@@ -77,6 +90,6 @@ app.use(bodyParser.json({
 app.use(passport.init());
 
 // api routes v1
-app.use('/api/v1', api(config));
+app.use('/api/v1', api(config , pusher));
 
 module.exports = app;

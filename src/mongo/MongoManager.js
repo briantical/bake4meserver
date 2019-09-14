@@ -19,6 +19,7 @@ class MongoManager {
     })
       .then(() => {
         console.log('Connection to database established.');
+
         return mongoose.connection.db
       })
       .catch(err => {

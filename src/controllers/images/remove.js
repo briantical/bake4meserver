@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const { sendDeleted } = require('../../middleware/index');
 
 const remove = ({ Image }) => async (req, res, next) => {

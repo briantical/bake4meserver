@@ -10,6 +10,45 @@ const all = require('./all');
 module.exports = (models, { config }) => {
   const api = router();
 
+  const { OrderDetails } = models;
+  const changeStream = OrderDetails.watch({ fullDocument: 'updateLookup' });
+
+  changeStream.on('change', (change) =>{
+    const channel = 'orderDetailss';
+    const orderDetails = change.fullDocument;
+
+    switch (change.operationType) {
+      //Return full document inserted
+      case 'insert':
+        pusher.trigger(
+          channel,
+          'inserted', 
+          { orderDetails }
+        ); 
+        break;
+      //Return deleted document ID
+      case 'delete':
+        pusher.trigger(
+          channel,
+          'deleted', 
+          change.documentKey._id
+        );
+        break;
+      //Return full document inserted and updated fields
+      case 'update':
+        const orderDetails_fields = change.updateDescription.updatedFields;
+        pusher.trigger(
+          channel,
+          'updated', 
+          { orderDetails_fields , orderDetails }
+        );
+        break;
+
+      default:
+        break;
+    }
+  });
+
   api.get('/', authenticate, all(models, { config }));
   api.get('/:_id', authenticate, retrieve(models));
   api.post('/', authenticate, create(models));
