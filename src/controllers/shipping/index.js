@@ -7,7 +7,7 @@ const remove = require('./remove');
 const retrieve = require('./retrieve');
 const all = require('./all');
 
-module.exports = (models, { config }) => {
+module.exports = (models, { config , pusher }) => {
   const api = router();
 
   const { Shipping } = models;

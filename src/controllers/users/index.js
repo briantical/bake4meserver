@@ -13,7 +13,7 @@ const update = require('./update');
 
  **/
 
-module.exports = (models) => {
+module.exports = (models , { pusher }) => {
   const api = router();
 
   const { User } = models;

@@ -11,7 +11,7 @@ const routersInit = (config, pusher) => {
 	const router = express();
 
 	router.use('/auth', authController(models, { config ,pusher }));
-	router.use('/user', usersController(models, { config ,pusher }));
+	router.use('/user', usersController(models, { pusher }));
 	router.use('/addons', addonsController(models, { config ,pusher }));
 	router.use('/address', addressController(models, { config ,pusher }));
 	router.use('/cake', cakeController(models, { config ,pusher }));
