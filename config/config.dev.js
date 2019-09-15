@@ -2,6 +2,8 @@ const path = require('path');
 
 module.exports = {
   bodyLimit: '100kb',
+  gmail_user: 'finalyearprojectsystem@gmail.com',
+  gmail_pass: 'cocisgroup4*',
   passport: {
     tokenTime: 2592000, // 60*60*24*30 -> 30 days
     secretAuthToken: process.env.SECRET_TOKEN,

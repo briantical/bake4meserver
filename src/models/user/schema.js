@@ -32,6 +32,13 @@ const schema = new Schema({
 			type: ObjectId,
 			ref: 'Address',
 			required: [false]  		
+		},
+		_token:{
+			type: String,
+		},
+		isVerified:{
+			type: Boolean,
+			default: false
 		}
 	},
 });

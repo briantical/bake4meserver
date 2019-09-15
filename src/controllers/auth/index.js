@@ -4,6 +4,7 @@ const passport = require('passport');
 const signIn = require('./sign-in');
 const signUp = require('./sign-up');
 const signOut = require('./sign-out');
+const verify = require('./verfiy');
 const changePassword = require('./change-password');
 
 /**
@@ -45,6 +46,8 @@ module.exports = (models, { config }) => {
     signIn);
 
   api.post('/sign-out', authenticate, signOut);
+
+  api.post('/verify:_token', verify);
 
   api.put('/change-password', authenticate, changePassword(models));
 
