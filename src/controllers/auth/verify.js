@@ -1,29 +1,34 @@
-const { sendOne } = require('../../middleware');
-const { User } = require('../../models/user/');
-
-const verify = async (req, res ,next) => {
-  const { token, user } = req; 
-  return sendOne(res, { user, token });
-
-};
-
-module.exports = verify;
-
 const _ = require('lodash');
 const { sendUpdated } = require('../../middleware/index');
 
-const update = ({ User }) => async (req, res, next) => {
+const update = ({ User }, { config}) => async (req, res, next) => {
   try {    
     const { _token } = req.params;
-    const user = await User.findOne({ _token });
-    if(_token === user._token){
-        const isVerified = true
-        _.extend(user, isVerified);
+    const user = await User.findOne({ 'verification._token' : _token });
+    
+    const verified_at = new Date().getTime();
+    if(_token === user.verification._token){
+      if (config.emailTime > verified_at) {
+        
+        const isVerified = true;
+        const active = true
+        const verified_at = verified_at;
+
+        _.extend(user, {
+          verification:{
+            ...user.verification,
+            isVerified,
+            verified_at
+          },
+          profile:{
+            ...user.profile,
+            active
+          }
+        });
+        await user.save();
+        return sendUpdated(res, { user });
+      }
     }
-
-    await user.save();
-    return sendUpdated(res, { user });
-
   } catch (error) {
     next(error);
   }

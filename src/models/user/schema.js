@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { EMAIL } = require('../../utils/regexes');
+const { config } = require('../../../config');
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
@@ -13,6 +14,22 @@ const schema = new Schema({
 			validator: email => EMAIL.test(email),
 			message: 'Field [email] wrong format.',
 		},
+	},
+	verification:{
+		_token:{
+			type: String,
+		},
+		isVerified:{
+			type: Boolean,
+			default: false
+		},
+		expiry:{
+			type: Date,
+			default: config.emailTime
+		},
+		verified_at:{
+			type: Date
+		}
 	},
 	profile: {
 		fullName: {
@@ -33,12 +50,9 @@ const schema = new Schema({
 			ref: 'Address',
 			required: [false]  		
 		},
-		_token:{
-			type: String,
-		},
-		isVerified:{
-			type: Boolean,
-			default: false
+		active:{
+			type:Boolean,
+			default:false
 		}
 	},
 });

@@ -10,6 +10,9 @@ const schema = new Schema({
     type : String,    
     required: [true]
   },
+  image:{
+    type: String
+  }
 });
 
 module.exports = { schema };

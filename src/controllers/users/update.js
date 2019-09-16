@@ -13,11 +13,12 @@ const signIn = ({ User }) => async (req, res, next) => {
     }
     _.extend(user, {
       profile: {
-        fullName: fullName,
-        avatar: avatar,
-        phoneNumber: phoneNumber,
-        userName: userName,
-        address: address     
+        ...user.profile,
+        fullName,
+        avatar,
+        phoneNumber,
+        userName,
+        address     
       },
     });
 
