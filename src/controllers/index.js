@@ -10,10 +10,9 @@ const categoryController = require('./category');
 const orderController = require('./order');
 const orderDetailsController = require('./orderDetails');
 const paymentController = require('./payment');
-const imageController = require('./images');
 const productController = require('./product');
 const supplierController = require('./supplier');
 
-module.exports = { authController, usersController, productController, supplierController ,addonsController, imageController,categoryController,addressController, cakeController, cartController, customerController, shippingController, orderController, orderDetailsController, paymentController,
+module.exports = { authController, usersController, productController, supplierController ,addonsController,categoryController,addressController, cakeController, cartController, customerController, shippingController, orderController, orderDetailsController, paymentController,
 };
 

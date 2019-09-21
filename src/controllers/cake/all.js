@@ -1,7 +1,7 @@
 const { sendList } = require('../../middleware/index');
 const { queryToObject } = require('../../utils/requests');
 
-const all = ({ Supplier }, { config }) => async (req, res, next) => {
+const all = ({ Cake }, { config }) => async (req, res, next) => {
 	try {
 		let {search,limit, skip } = queryToObject(req.query);
 
@@ -9,8 +9,8 @@ const all = ({ Supplier }, { config }) => async (req, res, next) => {
 		limit = parseInt(limit, 10);
 		limit = limit && limit < config.maxLimitPerQuery ? limit : config.maxLimitPerQuery;
 
-		const count = await Supplier.find().countDocuments();
-		const cakes = await Supplier.find()
+		const count = await Cake.find().countDocuments();
+		const cakes = await Cake.find()
 			.populate('category')
 			.skip(skip)
 			.limit(limit);
