@@ -6,13 +6,13 @@ const update = ({ User }, { config}) => async (req, res, next) => {
     const { _token } = req.params;
     const user = await User.findOne({ 'verification._token' : _token });
     
-    const verified_at = new Date().getTime();
+    let verified_at = new Date().getTime();
     if(_token === user.verification._token){
       if (config.emailTime > verified_at) {
         
         const isVerified = true;
         const active = true
-        const verified_at = verified_at;
+        verified_at = verified_at;
 
         _.extend(user, {
           verification:{
