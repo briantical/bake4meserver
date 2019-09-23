@@ -8,6 +8,7 @@ const signIn = ({ User }) => async (req, res, next) => {
       .findById(req.user.id)
       .populate('profile.address');
     const { fullName, avatar, phoneNumber,userName, address } = req.body;
+    const complete = true;
     if (!user) {
       throw new MethodNotAllowed(405, 'Permission denied');
     }
@@ -18,7 +19,8 @@ const signIn = ({ User }) => async (req, res, next) => {
         avatar,
         phoneNumber,
         userName,
-        address     
+        address,
+        complete   
       },
     });
 

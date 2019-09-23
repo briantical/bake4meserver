@@ -53,6 +53,10 @@ const schema = new Schema({
 		active:{
 			type:Boolean,
 			default:false
+		},
+		complete:{
+			type:Boolean,
+			default: false
 		}
 	},
 });
