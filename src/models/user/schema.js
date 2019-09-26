@@ -45,10 +45,12 @@ const schema = new Schema({
 		userName:{
 			type: String,
 		},
-		address:{
-			type: ObjectId,
-			ref: 'Address',
-			required: [false]  		
+		location: {
+			type: {
+				type: String,
+				default: 'Point'
+			},
+			coordinates: [Number]
 		},
 		active:{
 			type:Boolean,
@@ -60,5 +62,7 @@ const schema = new Schema({
 		}
 	},
 });
+
+schema.index({ "location": "2dsphere" });
 
 module.exports = { schema };

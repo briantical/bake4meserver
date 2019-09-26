@@ -9,7 +9,6 @@ const signIn = ({ User }) => async (req, res, next) => {
       .populate('profile.address');
     const { fullName, avatar, phoneNumber,userName, address } = req.body;
 
-    console.log('REQUEST BODY' + JSON.stringify(req.params))
     const complete = true;
     if (!user) {
       throw new MethodNotAllowed(405, 'Permission denied');
