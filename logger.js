@@ -4,7 +4,7 @@ const { mongoManager } = require('./src/mongo/MongoManager');
 
 const logger = winston.createLogger({  
   transports: [
-    new (winston.transports.MongoDB)({ db: mongoManager.getMongoUrl()}),
+    new (winston.transports.MongoDB)({ db:  mongoManager.getMongoUrl()}),
   ],
 });
 
