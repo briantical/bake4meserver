@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const { EMAIL } = require('../../utils/regexes');
 const { config } = require('../../../config');
 const Schema = mongoose.Schema;
-const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
 
