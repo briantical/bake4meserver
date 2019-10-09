@@ -28,7 +28,8 @@ function runCommand(command) {
   }
 }
 
-gulp.task('mongo', runCommand('mongod --port 27017 --replSet rscriteria --bind_ip 127.0.0.1'));
+//Change to the path where Data/db folder is located
+gulp.task('mongo', runCommand('mongod --port 27017 --replSet rscriteria --bind_ip 127.0.0.1 --dbpath /Users/briantical/data/db'));
 
 gulp.task('run:dev', gulp.series(['mongo', 'server']), function(){
   browser.init({server: './_site', port: port});
