@@ -33,7 +33,7 @@ const sendOne = curry((res, entity) => {
 const sendList = curry((res, entityList) => sendResponse(res, entityList));
 const sendCreated = curry((res, entity) => sendResponse(res, entity));
 const sendUpdated = curry((res, updatedEntity) => sendResponse(res, updatedEntity));
-const sendDeleted = curry(res => sendResponse(res, null, STATUSES.NO_CONTENT));
+const sendDeleted = curry((res, deletedEntity) => sendResponse(res, deletedEntity));
 const sendAccepted = (res) => () => sendResponse(res, null);
 
 module.exports = {

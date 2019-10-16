@@ -6,7 +6,7 @@ const remove = ({ Cake }) => async (req, res, next) => {
     const cake = await Cake
       .findOne({ _id })
       .populate('category');
-    await Cake.remove({ _id });
+    await Cake.deleteOne({ _id });
     return sendDeleted(res, { cake });
   } catch (error) {
     next(error);
