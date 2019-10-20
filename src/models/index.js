@@ -11,5 +11,6 @@ const { Customer } = require('./customer');
 const { Product } = require('./product');
 const { Supplier } = require('./supplier');
 const { Category } = require('./category');
+const { Snack } = require('./snack');
 
-module.exports = { Addons,Address,Cake,Cart,Shipping,Order,OrderDetails,Payment,User, Customer, Product,Supplier,Category };
+module.exports = { Addons,Address,Cake,Cart,Shipping,Order,OrderDetails,Payment,User, Customer, Product,Supplier,Category, Snack };

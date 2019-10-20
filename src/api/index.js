@@ -2,9 +2,9 @@ const express = require('express');
 
 const { errorHandler } = require('../middleware/index');
 
-const models = { Addons,Address,Category,Cake ,Cart,Shipping,Order,OrderDetails,Payment,User, Customer , Product, Supplier } = require('../models/');
+const models = { Addons,Address,Category,Cake ,Cart,Shipping,Order,OrderDetails,Payment,User, Customer , Product, Supplier, Snack} = require('../models/');
 
-const { authController, usersController, addonsController ,categoryController,addressController, cakeController, cartController, customerController,shippingController, orderController, orderDetailsController, paymentController, productController, supplierController
+const { authController, usersController, addonsController ,categoryController,addressController, cakeController, cartController, customerController,shippingController, orderController, orderDetailsController, paymentController, productController, supplierController,snackController
 } = require('../controllers/')
 
 const routersInit = (config, pusher) => {		
@@ -24,6 +24,7 @@ const routersInit = (config, pusher) => {
 	router.use('/payment', paymentController(models, { config ,pusher }));
 	router.use('/product', productController(models, { config ,pusher }));
 	router.use('/supplier', supplierController(models, { config ,pusher }));
+	router.use('/snack', snackController(models, { config ,pusher }));
 
 	router.use(errorHandler);
 	return router;

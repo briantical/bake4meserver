@@ -12,7 +12,23 @@ const orderDetailsController = require('./orderDetails');
 const paymentController = require('./payment');
 const productController = require('./product');
 const supplierController = require('./supplier');
+const snackController = require('./snack');
 
-module.exports = { authController, usersController, productController, supplierController ,addonsController,categoryController,addressController, cakeController, cartController, customerController, shippingController, orderController, orderDetailsController, paymentController,
+module.exports = { 
+    authController, 
+    usersController, 
+    productController, 
+    supplierController,
+    addonsController,
+    categoryController,
+    addressController, 
+    cakeController, 
+    cartController, 
+    customerController, 
+    shippingController, 
+    orderController, 
+    orderDetailsController, 
+    paymentController,
+    snackController
 };
 
