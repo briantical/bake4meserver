@@ -7,7 +7,7 @@ const remove = require('./remove');
 const retrieve = require('./retrieve');
 const all = require('./all');
 
-module.exports = (models, { config , pusher }) => {
+module.exports =  (models, { config , pusher }) => {
   const api = router();
 
   const { Cake } = models;
@@ -15,8 +15,8 @@ module.exports = (models, { config , pusher }) => {
 
   changeStream.on('change', (change) =>{
     const channel = 'cakes';
-    const cake = change.fullDocument;
-
+    let cake = change.fullDocument;
+    
     switch (change.operationType) {
       //Return full document inserted
       case 'insert':
