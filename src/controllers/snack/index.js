@@ -14,7 +14,7 @@ module.exports = (models, { config , pusher }) => {
   const changeStream = Snack.watch({ fullDocument: 'updateLookup' });
 
   changeStream.on('change', (change) =>{
-    const channel = 'cakes';
+    const channel = 'snacks';
     const snack = change.fullDocument;
 
     switch (change.operationType) {

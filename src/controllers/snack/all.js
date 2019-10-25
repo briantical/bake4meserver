@@ -10,12 +10,12 @@ const all = ({ Snack }, { config }) => async (req, res, next) => {
 		limit = limit && limit < config.maxLimitPerQuery ? limit : config.maxLimitPerQuery;
 
 		const count = await Snack.find().countDocuments();
-		const cakes = await Snack.find()
+		const snacks = await Snack.find()
 			.populate('category')
 			.skip(skip)
 			.limit(limit);
 
-		return sendList(res, { cakes, count });
+		return sendList(res, { snacks, count });
 	} catch (error) {
 		next(error);
 	}
