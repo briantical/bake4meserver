@@ -11,7 +11,8 @@
     "lint": "eslint ./src "
   },
   "engines": {
-    "node": "12.7.x"
+    "node": "12.7.x",
+    "npm": "6.11.x"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
