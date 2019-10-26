@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "postinstall": "gulp dev",
+    "postinstall": "gulp run:dev",
     "dev": "./node_modules/.bin/gulp run:dev",
     "mongo": "./node_modules/.bin/gulp mongo",
     "server": "./node_modules/.bin/gulp server",
