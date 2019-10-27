@@ -12,7 +12,7 @@ const routersInit = (config, pusher) => {
 
 	router.use('/auth', authController(models, { config ,pusher }));
 	router.use('/user', usersController(models, { pusher }));
-	router.use('/addons', addonsController(models, { config ,pusher }));
+	router.use('/addon', addonsController(models, { config ,pusher }));
 	router.use('/address', addressController(models, { config ,pusher }));
 	router.use('/cake', cakeController(models, { config ,pusher }));
 	router.use('/cart', cartController(models, { config ,pusher }));
@@ -20,7 +20,7 @@ const routersInit = (config, pusher) => {
 	router.use('/category', categoryController(models, { config ,pusher }));
 	router.use('/shipping', shippingController(models, { config ,pusher }));
 	router.use('/order', orderController(models, { config ,pusher }));
-	router.use('/orderdetails', orderDetailsController(models, { config ,pusher }));
+	router.use('/orderdetail', orderDetailsController(models, { config ,pusher }));
 	router.use('/payment', paymentController(models, { config ,pusher }));
 	router.use('/product', productController(models, { config ,pusher }));
 	router.use('/supplier', supplierController(models, { config ,pusher }));

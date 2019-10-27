@@ -1,10 +1,10 @@
 const _ = require('lodash');
 const { sendUpdated } = require('../../middleware/index');
 
-const update = ({ Addon }) => async (req, res, next) => {
+const update = ({ Addons }) => async (req, res, next) => {
   try {    
     const { _id } = req.params;
-    const addon = await Addon
+    const addon = await Addons
       .findOne({ _id })
       .populate('product');
     _.extend(addon, req.body);

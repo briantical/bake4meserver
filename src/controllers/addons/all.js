@@ -1,7 +1,7 @@
 const { sendList } = require('../../middleware/index');
 const { queryToObject } = require('../../utils/requests');
 
-const all = ({ Addon }, { config }) => async (req, res, next) => {
+const all = ({ Addons }, { config }) => async (req, res, next) => {
 	try {
 		let { search, limit, skip } = queryToObject(req.query);
 
@@ -9,13 +9,8 @@ const all = ({ Addon }, { config }) => async (req, res, next) => {
 		limit = parseInt(limit, 10);
 		limit = limit && limit < config.maxLimitPerQuery ? limit : config.maxLimitPerQuery;
 
-		const query = { $and : [] };
-		if (search) {
-			query.$and.push({ $or: new Addon().fieldsToSearch(search) });
-		}
-
-		const count = await Addon.find(query).countDocuments();
-		const addons = await Addon.find(query)
+		const count = await Addons.find().countDocuments();
+		const addons = await Addons.find()
 			.populate('product')
 			.skip(skip)
 			.limit(limit);

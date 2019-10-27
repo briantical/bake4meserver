@@ -1,9 +1,9 @@
 const { sendOne } = require('../../middleware/index');
 
-const retrieve = ({ Addon }) => async (req, res, next) => {
+const retrieve = ({ Addons }) => async (req, res, next) => {
   try {    
     const { _id } = req.params;
-    const addon = await Addon
+    const addon = await Addons
       .findOne({ _id })
       .populate('product');
     return sendOne(res, { addon });
