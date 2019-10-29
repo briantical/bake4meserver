@@ -13,9 +13,10 @@ class MongoManager {
   
   connect () {
     mongoose.connect(this.getMongoUrl(), { 
+      useUnifiedTopology : true,
     	useNewUrlParser: true ,
     	keepAlive: true, 
-      keepAliveInitialDelay: 300000 ,
+      keepAliveInitialDelay: 300000 
     })
       .then(() => {
         console.log('Connection to database established.');

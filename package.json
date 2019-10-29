@@ -11,7 +11,7 @@
     "lint": "eslint ./src "
   },
   "engines": {
-    "node": "12.7.x",
+    "node": "12.x.x",
     "npm": "6.11.x"
   },
   "dependencies": {
@@ -24,13 +24,19 @@
     "express-jwt": "^5.3.1",
     "fs": "0.0.1-security",
     "gridfs-stream": "^1.1.1",
+    "gulp": "^4.0.2",
+    "gulp-nodemon": "^2.4.2",
+    "gulp-util": "^3.0.8",
     "http-errors": "^1.7.2",
     "jsonfile": "^5.0.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
-    "mongoose": "^5.6.0",
+    "mongodb": "^3.3.3",
+    "mongoose": "^5.7.1",
     "morgan": "~1.9.1",
+    "mtn-momo": "^1.0.4",
     "nodemailer": "^6.3.0",
+    "nodemon": "^1.19.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "passport-local-mongoose": "^5.0.1",
@@ -41,12 +47,7 @@
     "socket.io": "^2.2.0",
     "winston": "^3.2.1",
     "winston-mongodb": "^5.0.0",
-    "yamljs": "^0.3.0",
-    "gulp": "^4.0.2",
-    "gulp-nodemon": "^2.4.2",
-    "gulp-util": "^3.0.8",
-    "mtn-momo": "^1.0.4",
-    "nodemon": "^1.19.1"
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "eslint": "^6.0.1",
