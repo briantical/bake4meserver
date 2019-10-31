@@ -6,7 +6,7 @@ const remove = ({ Order }) => async (req, res, next) => {
     const order = await Order
       .findOne({ _id })
       .populate('customer');
-    await Order.remove({ _id });
+    await Order.deleteOne({ _id });
     return sendDeleted(res, { order });
   } catch (error) {
     next(error);

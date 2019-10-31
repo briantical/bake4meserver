@@ -5,7 +5,7 @@ const retrieve = ({ Addons }) => async (req, res, next) => {
     const { _id } = req.params;
     const addon = await Addons
       .findOne({ _id })
-      .populate('product');
+      .populate('category');
     return sendOne(res, { addon });
   } catch (error) {
     next(error);

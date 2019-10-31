@@ -7,7 +7,7 @@ const remove = ({ Cart }) => async (req, res, next) => {
       .findOne({ _id })
       .populate('shipping')
       .populate('payment');
-    await Cart.remove({ _id });
+    await Cart.deleteOne({ _id });
     return sendDeleted(res, { cart });
   } catch (error) {
     next(error);

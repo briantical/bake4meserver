@@ -6,7 +6,7 @@ const update = ({ Addons }) => async (req, res, next) => {
     const { _id } = req.params;
     const addon = await Addons
       .findOne({ _id })
-      .populate('product');
+      .populate('category');
     _.extend(addon, req.body);
 
     await addon.save();

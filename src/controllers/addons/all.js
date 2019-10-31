@@ -11,7 +11,7 @@ const all = ({ Addons }, { config }) => async (req, res, next) => {
 
 		const count = await Addons.find().countDocuments();
 		const addons = await Addons.find()
-			.populate('product')
+			.populate('category')
 			.skip(skip)
 			.limit(limit);
 

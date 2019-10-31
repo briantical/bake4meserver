@@ -6,7 +6,7 @@ const remove = ({ Supplier }) => async (req, res, next) => {
     const supplier = await Supplier
       .findOne({ _id })
       .populate('category');
-    await Supplier.remove({ _id });
+    await Supplier.deleteOne({ _id });
     return sendDeleted(res, { supplier });
   } catch (error) {
     next(error);

@@ -8,7 +8,7 @@ const remove = ({ OrderDetails }) => async (req, res, next) => {
       .populate('order')
 			.populate('cart')
 			.populate('product');
-    await OrderDetails.remove({ _id });
+    await OrderDetails.deleteOne({ _id });
     return sendDeleted(res, { orderDetails });
   } catch (error) {
     next(error);
