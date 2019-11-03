@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { EMAIL } = require('../../utils/regexes');
 const { config } = require('../../../config');
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
 
@@ -60,6 +61,11 @@ const schema = new Schema({
 			default: false
 		}
 	},
+	cart:{
+		type: ObjectId,
+    	ref: "Cart",
+    	required: [false]
+	}
 });
 
 schema.index({ "location": "2dsphere" });

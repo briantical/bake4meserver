@@ -5,8 +5,6 @@ const remove = ({ Cart }) => async (req, res, next) => {
     const { _id } = req.params;
     const cart = await Cart
       .findOne({ _id })
-      .populate('shipping')
-      .populate('payment');
     await Cart.deleteOne({ _id });
     return sendDeleted(res, { cart });
   } catch (error) {

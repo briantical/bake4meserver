@@ -1,24 +1,15 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
-  description:{
-    type : String,    
-    required: [true]
-  },
-  shipping:{
-    type: ObjectId,
-    ref: 'Shipping',
-    required: [true],
-  },
   payment:{
-    type : ObjectId,
-    ref : 'Payment',
+    type : String,
+    default: 'Mobile Money',
     required : [true]
   },
   totalCost:{
     type: Number,
+    default: 0,
     required: [true]
   },
   checkedOut:{
@@ -26,6 +17,6 @@ const schema = new Schema({
     default: false,
     required: [true]
   }
-});
+}); 
 
 module.exports = { schema };

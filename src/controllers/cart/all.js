@@ -16,8 +16,6 @@ const all = ({ Cart }, { config }) => async (req, res, next) => {
     
 		const count = await Cart.find(query).countDocuments();
 		const carts = await Cart.find(query)
-			.populate('shipping')
-			.populate('payment')
 			.skip(skip)
 			.limit(limit);
 

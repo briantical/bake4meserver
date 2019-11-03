@@ -5,8 +5,6 @@ const retrieve = ({ Cart }) => async (req, res, next) => {
     const { _id } = req.params;
     const cart = await Cart
       .findOne({ _id })
-      .populate('shipping')
-      .populate('payment');
     return sendOne(res, { cart });
   } catch (error) {
     next(error);

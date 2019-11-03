@@ -6,8 +6,6 @@ const update = ({ Cart }) => async (req, res, next) => {
     const { _id } = req.params;
     const cart = await Cart
       .findOne({ _id })
-      .populate('shipping')
-      .populate('payment');
     _.extend(cart, req.body);
 
     await cart.save();

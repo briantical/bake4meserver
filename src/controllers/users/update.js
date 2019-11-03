@@ -6,8 +6,9 @@ const signIn = ({ User }) => async (req, res, next) => {
   try {
     const user = await User
       .findById(req.user.id)
-      .populate('profile.address');
-    const { fullName, avatar, phoneNumber,userName ,coordinates} = req.body;
+      .populate('cart');
+    const { fullName, avatar, phoneNumber,userName ,coordinates, cart} = req.body;
+    console.log(req.body)
     const type = 'Point';
     const complete = true;
 
@@ -25,7 +26,8 @@ const signIn = ({ User }) => async (req, res, next) => {
           type,
           coordinates
         },
-        complete   
+        complete,
+        cart  
       },
     });
 

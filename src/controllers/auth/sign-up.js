@@ -43,12 +43,14 @@ const signUp = ({ User }, { config }) => (req, res, next) => {
 
     User.register(user, password, function name(err,user) {
       if (err === null) { 
-        withoutErrors(next, () => next());
+        
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
-              return console.log(error);
+              return sendOne(res,error);
+          }else{
+            console.log('Message sent: %s', info.messageId);
+            return withoutErrors(next, () => next());
           }
-          console.log('Message sent: %s', info.messageId);
         });
        }
        return sendOne(res,  err );
