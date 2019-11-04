@@ -27,8 +27,8 @@ const signIn = ({ User }) => async (req, res, next) => {
           coordinates
         },
         complete,
-        cart  
       },
+      cart
     });
 
     await user.save();

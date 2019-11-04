@@ -46,14 +46,15 @@ const signUp = ({ User }, { config }) => (req, res, next) => {
         
         transporter.sendMail(mailOptions, (error, info) => {
           if (error) {
-              return sendOne(res,error);
+            res.status(404).json({ error });
+            return;
           }else{
             console.log('Message sent: %s', info.messageId);
             return withoutErrors(next, () => next());
           }
         });
        }
-       return sendOne(res,  err );
+       //return sendOne(res,  err );
     })
 });
 

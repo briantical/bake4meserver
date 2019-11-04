@@ -64,7 +64,6 @@ const schema = new Schema({
 	cart:{
 		type: ObjectId,
     	ref: "Cart",
-    	required: [false]
 	}
 });
 
