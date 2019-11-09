@@ -41,18 +41,15 @@ const signUp = ({ User }, { config }) => (req, res, next) => {
         html : `<div>Follow the link below to verify your email.<br><a href='http://localhost:3000/api/v1/auth/verify${_token}'>VERIFY</a></div>`
     };
 
-
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
         console.log(error)
-        res.status(404).json({ error });
-        return;
+         res.status(404).json({ error });
+         return;
       }else{
-        User.register(user, password, function name(err,user) {
-          console.log('Message sent: %s', info.messageId);
-          return withoutErrors(next, () => next());
-        })
-      }
+         console.log('Message sent: %s', info.messageId);
+         User.register(user, password, withoutErrors(next, () => next()))
+       }
     });
 });
 
