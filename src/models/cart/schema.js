@@ -1,5 +1,19 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
+
+let itemsSchema = new Schema({
+  cake: {
+    type:ObjectId,
+    ref: "Cake",   
+    required: [false]
+},
+  snack:{
+    type:ObjectId,
+    ref: "Snack",   
+    required: [false]
+  }
+});
 
 const schema = new Schema({
   payment:{
@@ -16,7 +30,10 @@ const schema = new Schema({
     type: Boolean,
     default: false,
     required: [true]
-  }
+  },
+  items:[
+    itemsSchema
+  ]
 }); 
 
 module.exports = { schema };
