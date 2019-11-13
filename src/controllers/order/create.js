@@ -1,5 +1,5 @@
-const _ = require('lodash');
-const { sendOne } = require('../../middleware/index');
+const _ = require("lodash");
+const { sendOne } = require("../../middleware/index");
 
 const create = ({ Order }) => async (req, res, next) => {
   try {
@@ -8,7 +8,6 @@ const create = ({ Order }) => async (req, res, next) => {
 
     await order.save();
     return sendOne(res, { order });
-    
   } catch (error) {
     next(error);
   }

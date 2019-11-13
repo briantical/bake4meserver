@@ -1,20 +1,31 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
-const schema = new Schema({  
-  description: {
-    type: String,    
-    required: [true],
-  },
-  customer:{
+const schema = new Schema({
+  customer: {
     type: ObjectId,
-    ref: 'Customer',
-    required: [true],
+    ref: "User",
+    required: [true]
   },
-  orderDate:{
+  cart: {
+    type: ObjectId,
+    ref: "Cart",
+    required: [true]
+  },
+  comments: {
+    type: String,
+    required: [true]
+  },
+  orderDate: {
     type: Date,
-    required: [true],
+    default: new Date(),
+    required: [true]
+  },
+  orderStatus: {
+    type: String,
+    default: "Not accepted",
+    required: [true]
   }
 });
 

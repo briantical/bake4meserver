@@ -1,11 +1,11 @@
-const { sendDeleted } = require('../../middleware/index');
+const { sendDeleted } = require("../../middleware/index");
 
 const remove = ({ Order }) => async (req, res, next) => {
-  try {    
+  try {
     const { _id } = req.params;
-    const order = await Order
-      .findOne({ _id })
-      .populate('customer');
+    const order = await Order.findOne({ _id })
+      .populate("customer")
+      .populate("cart");
     await Order.deleteOne({ _id });
     return sendDeleted(res, { order });
   } catch (error) {
