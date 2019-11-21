@@ -6,7 +6,10 @@ const update = ({ Order }) => async (req, res, next) => {
     const { _id } = req.params;
     const order = await Order.findOne({ _id })
       .populate("customer")
-      .populate("cart");
+      .populate({
+        path: "cart",
+        populate: { path: "items.cake" }
+      });
     _.extend(order, req.body);
 
     await order.save();

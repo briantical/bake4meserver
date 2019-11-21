@@ -15,7 +15,10 @@ const all = ({ Order }, { config }) => async (req, res, next) => {
     const count = await Order.find().countDocuments();
     const orders = await Order.find()
       .populate("customer")
-      .populate("cart")
+      .populate({
+        path: "cart",
+        populate: { path: "items.cake" }
+      })
       .skip(skip)
       .limit(limit);
 
