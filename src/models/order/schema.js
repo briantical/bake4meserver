@@ -26,6 +26,10 @@ const schema = new Schema({
     type: String,
     default: "Not accepted",
     required: [true]
+  },
+  deliveryAddress: {
+    type: String,
+    required: [true]
   }
 });
 

@@ -1,11 +1,11 @@
-const { Router: router } = require('express');
-const { authenticate, generateAccessToken } = require('../../middleware');
-const passport = require('passport');
-const signIn = require('./sign-in');
-const signUp = require('./sign-up');
-const signOut = require('./sign-out');
-const verify = require('./verify');
-const changePassword = require('./change-password');
+const { Router: router } = require("express");
+const { authenticate, generateAccessToken } = require("../../middleware");
+const passport = require("passport");
+const signIn = require("./sign-in");
+const signUp = require("./sign-up");
+const signOut = require("./sign-out");
+const verify = require("./verify");
+const changePassword = require("./change-password");
 
 /**
  * Provide Api for Auth
@@ -35,21 +35,26 @@ const changePassword = require('./change-password');
 module.exports = (models, { config }) => {
   const api = router();
 
-  api.post('/sign-in',
-    passport.authenticate('local', { session: false, scope: [] }),
+  api.post(
+    "/sign-in",
+    passport.authenticate("local", { session: false, scope: [] }),
     generateAccessToken,
-    signIn);
+    signIn
+  );
 
-  api.post('/sign-up', signUp(models, { config }),
-    passport.authenticate('local', { session: false, scope: [] }),
+  api.post(
+    "/sign-up",
+    signUp(models, { config }),
+    passport.authenticate("local", { session: false, scope: [] }),
     generateAccessToken,
-    signIn);
+    signIn
+  );
 
-  api.post('/sign-out', authenticate, signOut);
+  api.post("/sign-out", authenticate, signOut);
 
-  api.get('/verify:_token', verify(models, { config }));
+  api.get("/verify:_token", verify(models, { config }));
 
-  api.put('/change-password', authenticate, changePassword(models));
+  api.put("/change-password", authenticate, changePassword(models));
 
   return api;
 };

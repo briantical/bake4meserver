@@ -1,17 +1,14 @@
-const _ = require('lodash');
-const { sendUpdated } = require('../../middleware/index');
+const _ = require("lodash");
+const { sendUpdated } = require("../../middleware/index");
 
 const update = ({ Cake }) => async (req, res, next) => {
-  try {    
+  try {
     const { _id } = req.params;
-    const cake = await Cake
-      .findOne({ _id })
-      .populate('category');
+    const cake = await Cake.findOne({ _id }).populate("category");
     _.extend(cake, req.body);
 
     await cake.save();
     return sendUpdated(res, { cake });
-
   } catch (error) {
     next(error);
   }

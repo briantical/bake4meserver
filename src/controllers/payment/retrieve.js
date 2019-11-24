@@ -1,7 +1,7 @@
-const { sendOne } = require('../../middleware/index');
+const { sendOne } = require("../../middleware/index");
 
 const retrieve = ({ Payment }) => async (req, res, next) => {
-  try {    
+  try {
     const { _id } = req.params;
     const payment = await Payment.findOne({ _id });
     return sendOne(res, { payment });

@@ -1,7 +1,7 @@
-const { sendDeleted } = require('../../middleware/index');
+const { sendDeleted } = require("../../middleware/index");
 
 const remove = ({ Payment }) => async (req, res, next) => {
-  try {    
+  try {
     const { _id } = req.params;
     const address = await Payment.findOne({ _id });
     await Payment.deleteOne({ _id });

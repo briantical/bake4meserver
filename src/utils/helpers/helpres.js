@@ -1,4 +1,4 @@
-const _ = require('lodash');
+const _ = require("lodash");
 /**
  * @example
  *        .map(only('_id'))
@@ -28,6 +28,5 @@ const idToString = id => id && id.toString();
  *        .map(idToString)
  * **/
 const includes = (ids, id) => ids.map(idToString).includes(id.toString());
-
 
 module.exports = { only, notIn, fieldAs, idToString, includes };

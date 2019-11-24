@@ -1,3 +1,3 @@
-const { Cake } = require('./model');
+const { Cake } = require("./model");
 
 module.exports = { Cake };

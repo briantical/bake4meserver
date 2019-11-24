@@ -1,5 +1,5 @@
-const _ = require('lodash');
-const { Unauthorized } = require('rest-api-errors');
+const _ = require("lodash");
+const { Unauthorized } = require("rest-api-errors");
 
 /**
  * Provide passport authenticate strategies
@@ -19,27 +19,25 @@ class PassportStrategies {
   }
 
   local(username, password, done) {
-    const error = new Unauthorized(401, 'Incorrect username or password.');
-    this._User.findOne({ email: username })
-      .populate('profile.address')
-      .then(user => user
-        ? user.authenticate(password, (err, userData) =>
-          userData
-            ? done(null, user)
-            : done(error, false))
-        : done(error, false))
+    const error = new Unauthorized(401, "Incorrect username or password.");
+    this._User
+      .findOne({ email: username })
+      .then(user =>
+        user
+          ? user.authenticate(password, (err, userData) =>
+              userData ? done(null, user) : done(error, false)
+            )
+          : done(error, false)
+      )
       .catch(done);
   }
 
   // extend if needed
-  google(accessToken, refreshToken, profile, done) {
-  }
+  google(accessToken, refreshToken, profile, done) {}
 
-  facebook(accessToken, refreshToken, profile, done) {
-  }
+  facebook(accessToken, refreshToken, profile, done) {}
 
-  instagram(req, accessToken, refreshToken, profile, done) {
-  }
+  instagram(req, accessToken, refreshToken, profile, done) {}
 }
 
 module.exports = { PassportStrategies };

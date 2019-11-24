@@ -1,49 +1,49 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
-  category:{
+  category: {
     type: ObjectId,
     ref: "Category",
     required: [true]
   },
-  name:{
-    type : String,
+  name: {
+    type: String,
     required: [true],
-    unique : true,    
+    unique: true
   },
-  description:{
-    type : String,    
-    required: [true]
-  },
-  image:{
+  description: {
     type: String,
     required: [true]
   },
-  cakeDetails:{
-    weight:{
+  image: {
+    type: String,
+    required: [true]
+  },
+  cakeDetails: {
+    weight: {
       type: Number,
       required: [true]
     },
-    shape:{
+    shape: {
       type: String,
       default: "Custom",
       required: [true]
     },
-    tiers:{
+    tiers: {
       type: Number,
       default: 1,
       required: [true]
     },
-    flavour:{
+    flavour: {
       type: String,
       required: [true]
     },
-    cost:{
-      type : Number,  	
+    cost: {
+      type: Number,
       required: [true]
-    },
+    }
   }
 });
 

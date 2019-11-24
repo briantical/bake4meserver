@@ -1,4 +1,4 @@
-const _ = require('lodash');
+const _ = require("lodash");
 // object => object // { 'profile.phone': '1111' } => {profile: { phone: '111' } }
 const parseFormDataBody = body => {
   const newBody = {};
@@ -22,8 +22,8 @@ const queryToObject = query => {
  * @example
  *       _.pickBy({a: '', b: false, c: undefined }, onlyDefined) => { b:false }
  * **/
-const onlyDefined = v => (_.isString(v) && !!v) || (_.isBoolean(v) && true) ||  !!v;
-
+const onlyDefined = v =>
+  (_.isString(v) && !!v) || (_.isBoolean(v) && true) || !!v;
 
 /**
  * @example
@@ -31,9 +31,15 @@ const onlyDefined = v => (_.isString(v) && !!v) || (_.isBoolean(v) && true) ||  
  * **/
 const pickFieldsFilterFor = (fields, Model) => {
   const piked = _.pick(fields || {}, _.keys(Model.schema.paths));
-  _.keys(piked).forEach(key => _.extend(piked, { [key]: parseInt(piked[key]) }));
+  _.keys(piked).forEach(key =>
+    _.extend(piked, { [key]: parseInt(piked[key]) })
+  );
   return piked;
 };
 
-
-module.exports = { parseFormDataBody, queryToObject, onlyDefined, pickFieldsFilterFor };
+module.exports = {
+  parseFormDataBody,
+  queryToObject,
+  onlyDefined,
+  pickFieldsFilterFor
+};

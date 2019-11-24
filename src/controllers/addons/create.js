@@ -1,8 +1,8 @@
-const _ = require('lodash');
-const { sendCreated } = require('../../middleware/index');
+const _ = require("lodash");
+const { sendCreated } = require("../../middleware/index");
 
 const create = ({ Addons }) => async (req, res, next) => {
-  try {    
+  try {
     const addon = new Addons();
     _.extend(addon, req.body);
 

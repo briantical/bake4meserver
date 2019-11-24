@@ -1,3 +1,3 @@
-const { updateDeep } = require('./object');
+const { updateDeep } = require("./object");
 
 module.exports = { updateDeep };

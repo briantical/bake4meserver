@@ -1,3 +1,3 @@
-const { Order } = require('./model');
+const { Order } = require("./model");
 
 module.exports = { Order };

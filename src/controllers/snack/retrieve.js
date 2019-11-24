@@ -1,13 +1,10 @@
-const { sendOne } = require('../../middleware/index');
+const { sendOne } = require("../../middleware/index");
 
 const retrieve = ({ Snack }) => async (req, res, next) => {
-  try {    
+  try {
     const { _id } = req.params;
-    const snack = await Snack
-      .findOne({ _id })
-      .populate('category');
+    const snack = await Snack.findOne({ _id }).populate("category");
     return sendOne(res, { snack });
-
   } catch (error) {
     next(error);
   }

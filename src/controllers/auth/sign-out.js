@@ -1,4 +1,4 @@
-const { sendAccepted } = require('../../middleware');
+const { sendAccepted } = require("../../middleware");
 
 const signOut = (req, res) => {
   req.logOut();

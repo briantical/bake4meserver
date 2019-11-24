@@ -1,8 +1,8 @@
-const passportNPM = require('passport');
-const { Strategy: LocalStrategy } = require('passport-local');
-const { User } = require('../models/user');
-const { PassportStrategies } = require('./PassportStrategies');
-const config = require('../../config');
+const passportNPM = require("passport");
+const { Strategy: LocalStrategy } = require("passport-local");
+const { User } = require("../models/user");
+const { PassportStrategies } = require("./PassportStrategies");
+const config = require("../../config");
 
 /**
  * Provide passport authenticate logic
@@ -17,10 +17,15 @@ class Passport {
     this._passport = passportNPM;
     this._strategies = new PassportStrategies(config, User);
 
-    this._passport.use(new LocalStrategy({
-      usernameField: 'email',
-      passwordField: 'password',
-    }, this._strategies.local));
+    this._passport.use(
+      new LocalStrategy(
+        {
+          usernameField: "email",
+          passwordField: "password"
+        },
+        this._strategies.local
+      )
+    );
   }
 
   init() {

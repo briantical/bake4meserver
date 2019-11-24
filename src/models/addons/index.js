@@ -1,3 +1,3 @@
-const { Addons } = require('./model');
+const { Addons } = require("./model");
 
 module.exports = { Addons };

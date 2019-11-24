@@ -1,3 +1,3 @@
-const { Snack } = require('./model');
+const { Snack } = require("./model");
 
 module.exports = { Snack };

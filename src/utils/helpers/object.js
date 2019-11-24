@@ -1,4 +1,4 @@
-const _ = require('lodash');
+const _ = require("lodash");
 /**
  * Provide deep updating of object
  *
@@ -23,7 +23,7 @@ const updateDeep = (target, source, fields) => {
   keys.forEach(key =>
     _.extend(res, { [key]: _.get(source, key) || _.get(target, key) })
   );
-  return res
+  return res;
 };
 
 module.exports = { updateDeep };

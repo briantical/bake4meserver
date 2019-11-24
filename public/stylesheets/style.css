@@ -3,14 +3,14 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-h1{
-  color: #4F0B0C;
+h1 {
+  color: #4f0b0c;
 }
 
-div{
-  position : absolute;
+div {
+  position: absolute;
   bottom: 0px;
-  display : flex;
+  display: flex;
   justify-content: center;
   width: 100%;
 }

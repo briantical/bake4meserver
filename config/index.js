@@ -1,5 +1,5 @@
-const devConfig = require('./config.dev');
-const prodConfig = require('./config.prod');
+const devConfig = require("./config.dev");
+const prodConfig = require("./config.prod");
 
 const type = process.env.NODE_ENV;
 const configs = {
@@ -8,5 +8,5 @@ const configs = {
 };
 
 module.exports = {
-  config: configs[type] || configs.development,
+  config: configs[type] || configs.development
 };

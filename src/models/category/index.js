@@ -1,3 +1,3 @@
-const { Category } = require('./model');
+const { Category } = require("./model");
 
 module.exports = { Category };

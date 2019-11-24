@@ -1,11 +1,9 @@
-const { sendDeleted } = require('../../middleware/index');
+const { sendDeleted } = require("../../middleware/index");
 
 const remove = ({ Cake }) => async (req, res, next) => {
-  try {    
+  try {
     const { _id } = req.params;
-    const cake = await Cake
-      .findOne({ _id })
-      .populate('category');
+    const cake = await Cake.findOne({ _id }).populate("category");
     await Cake.deleteOne({ _id });
     return sendDeleted(res, { cake });
   } catch (error) {
