@@ -10,11 +10,10 @@ const signIn = ({ User }) => async (req, res, next) => {
       avatar,
       phoneNumber,
       userName,
-      coordinates,
+      location,
       cart
     } = req.body;
-    console.log(req.body);
-    const type = "Point";
+
     const complete = true;
 
     if (!user) {
@@ -27,10 +26,7 @@ const signIn = ({ User }) => async (req, res, next) => {
         avatar,
         phoneNumber,
         userName,
-        location: {
-          type,
-          coordinates
-        },
+        location,
         complete
       },
       cart

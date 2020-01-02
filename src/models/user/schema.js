@@ -45,11 +45,8 @@ const schema = new Schema({
       type: String
     },
     location: {
-      type: {
-        type: String,
-        default: "Point"
-      },
-      coordinates: [Number]
+      type: String,
+      default: "Bbunga"
     },
     active: {
       type: Boolean,
