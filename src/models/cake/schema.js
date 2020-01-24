@@ -21,16 +21,6 @@ const schema = new Schema({
     ref: "Category",
     required: [true]
   },
-  priceRange: {
-    min: {
-      type: Number,
-      required: [true]
-    },
-    max: {
-      type: Number,
-      required: [true]
-    }
-  },
   price: {
     type: Number,
     required: [true]

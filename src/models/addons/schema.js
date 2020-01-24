@@ -16,11 +16,11 @@ const schema = new Schema({
     type: String,
     required: [true]
   },
-  image: {
-    type: String,
+  images: {
+    type: [String],
     required: [true]
   },
-  cost: {
+  price: {
     type: Number,
     required: [true]
   }

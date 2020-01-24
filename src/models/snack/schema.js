@@ -3,11 +3,6 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const schema = new Schema({
-  category: {
-    type: ObjectId,
-    ref: "Category",
-    required: [true]
-  },
   name: {
     type: String,
     required: [true],
@@ -17,28 +12,51 @@ const schema = new Schema({
     type: String,
     required: [true]
   },
-  image: {
-    type: String,
+  images: {
+    type: [String],
     required: [true]
   },
-  snackDetails: {
-    weight: {
-      type: Number,
-      required: [true]
-    },
-    shape: {
-      type: String,
+  category: {
+    type: ObjectId,
+    ref: "Category",
+    required: [true]
+  },
+  price: {
+    type: Number,
+    required: [true]
+  },
+  required: {
+    shapes: {
+      type: [String],
       default: "Custom",
       required: [true]
     },
-    flavour: {
-      type: String,
+    flavours: {
+      type: [String],
       required: [true]
     },
-    cost: {
-      type: Number,
+    colours: {
+      type: [String],
+      required: [true]
+    },
+    weight: {
+      type: [Number],
       required: [true]
     }
+  },
+  options: {
+    drinks: [
+      {
+        name: {
+          type: String,
+          required: [true]
+        },
+        price: {
+          type: Number,
+          required: [true]
+        }
+      }
+    ]
   }
 });
 
