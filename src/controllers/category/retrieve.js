@@ -1,8 +1,5 @@
 const { sendOne } = require("../../middleware/index");
 
-const socket_io = require("socket.io");
-let io = socket_io();
-
 const retrieve = ({ Category }) => async (req, res, next) => {
   try {
     const { _id } = req.params;

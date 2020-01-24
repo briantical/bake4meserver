@@ -5,7 +5,7 @@
  */
 
 var app = require("../app");
-var debug = require("debug")("criteriaserver:server");
+var debug = require("debug")("bake4meserver:server");
 var http = require("http");
 
 /**
@@ -26,7 +26,7 @@ var server = http.createServer(app);
  */
 
 server.listen(port, () =>
-  console.log(`Criteria server listening on port ${port}...`)
+  console.log(`Bake4Me server listening on port ${port}...`)
 );
 server.on("error", onError);
 server.on("listening", onListening);

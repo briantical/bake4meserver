@@ -31,11 +31,6 @@ const schema = new Schema({
       default: "Custom",
       required: [true]
     },
-    tiers: {
-      type: Number,
-      default: 1,
-      required: [true]
-    },
     flavour: {
       type: String,
       required: [true]
