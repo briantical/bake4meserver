@@ -18,7 +18,7 @@ class MongoManager {
         keepAliveInitialDelay: 300000
       })
       .then(() => {
-        console.log("Connection to database established.");
+        console.log("Connection to Bake4Me database established.");
 
         return mongoose.connection.db;
       })

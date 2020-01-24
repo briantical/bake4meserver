@@ -31,7 +31,7 @@ function runCommand(command) {
 }
 
 //Change to the path where Data/db folder is located
-gulp.task("mongo", runCommand("mongod --port 27017 --replSet rscriteria "));
+gulp.task("mongo", runCommand("mongod --port 27017 --replSet rsbake4me"));
 
 //--dbpath /Users/briantical/data/db
 

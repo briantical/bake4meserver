@@ -1,5 +1,4 @@
 const _ = require("lodash");
-const { sendUpdated } = require("../../middleware/index");
 
 const update = ({ User }, { config }) => async (req, res, next) => {
   try {
@@ -25,7 +24,7 @@ const update = ({ User }, { config }) => async (req, res, next) => {
           }
         });
         await user.save();
-        return sendUpdated(res, { user });
+        return res.redirect(`${process.env.DASHDOARD_URL}/verify`);
       }
     }
   } catch (error) {
