@@ -11,6 +11,7 @@ const signIn = ({ User }) => async (req, res, next) => {
       phoneNumber,
       userName,
       location,
+      payment,
       cart
     } = req.body;
 
@@ -27,6 +28,7 @@ const signIn = ({ User }) => async (req, res, next) => {
         phoneNumber,
         userName,
         location,
+        payment,
         complete
       },
       cart

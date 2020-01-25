@@ -15,12 +15,12 @@ const schema = new Schema({
   paymentDetails: {
     primaryAccount: {
       type: String,
-      default: "0789566944",
+      default: "0700000000",
       required: [true]
     },
     secondaryAccount: {
       type: String,
-      default: "0787987255"
+      default: "0700000000"
     }
   }
 });

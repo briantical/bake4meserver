@@ -24,7 +24,7 @@ const update = ({ User }, { config }) => async (req, res, next) => {
           }
         });
         await user.save();
-        return res.redirect(`${process.env.DASHDOARD_URL}/verify`);
+        return res.redirect(`/Verify.html`);
       }
     }
   } catch (error) {

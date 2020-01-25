@@ -4,9 +4,7 @@ const { sendUpdated } = require("../../middleware/index");
 const update = ({ Cart }) => async (req, res, next) => {
   try {
     const { _id } = req.params;
-    const cart = await Cart.findOne({ _id })
-      .populate("items.cake")
-      .populate("items.snack");
+    const cart = await Cart.findOne({ _id });
     _.extend(cart, req.body);
 
     await cart.save();

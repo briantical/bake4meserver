@@ -48,6 +48,10 @@ const schema = new Schema({
       type: String,
       default: "Bbunga"
     },
+    payment: {
+      type: String,
+      default: "Mobile Money"
+    },
     active: {
       type: Boolean,
       default: false
@@ -62,7 +66,5 @@ const schema = new Schema({
     ref: "Cart"
   }
 });
-
-schema.index({ location: "2dsphere" });
 
 module.exports = { schema };
