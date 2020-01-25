@@ -24,7 +24,7 @@ const schema = new Schema({
   },
   orderStatus: {
     type: String,
-    default: "Not accepted",
+    default: "Pending",
     required: [true]
   },
   deliveryAddress: {

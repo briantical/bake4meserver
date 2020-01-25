@@ -5,7 +5,7 @@ const update = ({ Cart }) => async (req, res, next) => {
   try {
     const { _id } = req.params;
     const cart = await Cart.findOne({ _id });
-    _.extend(cart, req.body);
+    _.extend(cart, { items: [...req.body] });
 
     await cart.save();
     return sendUpdated(res, { cart });
