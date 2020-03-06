@@ -6,18 +6,18 @@ const nodemailer = require("nodemailer");
 const { google } = require("googleapis");
 const _ = require("lodash");
 
-const OAuth2 = google.auth.OAuth2;
+// const OAuth2 = google.auth.OAuth2;
 
-const oauth2Client = new OAuth2(
-  process.env.GOOGLE_CLIENT_ID, //Client ID
-  process.env.GOOGLE_CLIENT_SECRET, //Client secret
-  "https://developers.google.com/oauthplayground" // Redirect URL
-);
+// const oauth2Client = new OAuth2(
+//   process.env.GOOGLE_CLIENT_ID, //Client ID
+//   process.env.GOOGLE_CLIENT_SECRET, //Client secret
+//   "https://developers.google.com/oauthplayground" // Redirect URL
+// );
 
-oauth2Client.setCredentials({
-  refresh_token: process.env.GOOGLE_REFRESH_TOKEN
-});
-const accessToken = oauth2Client.getAccessToken();
+// oauth2Client.setCredentials({
+//   refresh_token: process.env.GOOGLE_REFRESH_TOKEN
+// });
+// const accessToken = oauth2Client.getAccessToken();
 
 const signUp = ({ User }, { config }) => (req, res, next) => {
   const { email, password } = req.body;
@@ -26,15 +26,24 @@ const signUp = ({ User }, { config }) => (req, res, next) => {
     return next(new NotAcceptable(406, "Password is in wrong format."));
   }
 
-  const smtpTransport = nodemailer.createTransport({
-    service: "gmail",
+  // const smtpTransport = nodemailer.createTransport({
+  //   service: "gmail",
+  //   auth: {
+  //     type: "OAuth2",
+  //     user: config.gmail_user,
+  //     clientId: process.env.GOOGLE_CLIENT_ID,
+  //     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  //     refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
+  //     accessToken: accessToken
+  //   }
+  // });
+
+  var smtpTransport = nodemailer.createTransport({
+    host: "smtp.mailtrap.io",
+    port: 2525,
     auth: {
-      type: "OAuth2",
-      user: config.gmail_user,
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      refreshToken: process.env.GOOGLE_REFRESH_TOKEN,
-      accessToken: accessToken
+      user: "21f13fe58f3c78",
+      pass: "6b3b47378a6830"
     }
   });
 
